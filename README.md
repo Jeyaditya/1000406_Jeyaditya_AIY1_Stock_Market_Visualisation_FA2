@@ -56,3 +56,8 @@ Points exceeding the selected Percentile Threshold (e.g., 85th percentile) are c
   * Rolling Window: Increase for a "macro" view of volatility; decrease for "micro" noise detection.
   * Volatility Percentile: Adjust how sensitive the dashboard is to price swings.
   * Download: Export the analyzed data (including the volatility zones) as a CSV for further research.
+
+# Credits
+ * Name: Jeyaditya
+ * CRS Facillitator: Syed Ali Beema S
+ * Jain Vidyalaya IB world school
