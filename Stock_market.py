@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📊 BTC 1-Min Volatility Intelligence Dashboard")
+st.title(" BTC 1-Min Volatility Intelligence Dashboard")
 st.markdown("Mathematics for AI | Advanced Financial Analytics")
 
 # =========================
@@ -56,7 +56,7 @@ with st.spinner("Loading full dataset into cache..."):
 # =========================
 # SIDEBAR CONTROLS
 # =========================
-st.sidebar.header("⚙️ Global Data Settings")
+st.sidebar.header(" Global Data Settings")
 
 # NEW: Control the total amount of data used from the CSV
 total_rows = len(df_raw)
@@ -73,7 +73,7 @@ slice_limit = int(total_rows * (data_percent / 100))
 df_sliced = df_raw.iloc[:slice_limit].copy()
 
 st.sidebar.divider()
-st.sidebar.header("🔍 Visualization Controls")
+st.sidebar.header(" Visualization Controls")
 
 # Slider for the "View" (The recent points to show on charts)
 sample_size = st.sidebar.slider(
@@ -121,7 +121,7 @@ col4.metric("Volatility Threshold", f"{threshold_value:.2f}")
 # =========================
 # CHARTS
 # =========================
-st.subheader(f"📈 Price Movement ({sample_size:,} Latest Points)")
+st.subheader(f" Price Movement ({sample_size:,} Latest Points)")
 
 fig = go.Figure()
 for zone, color in [("Stable", "#00FF00"), ("Volatile", "#FF0000")]:
@@ -137,7 +137,7 @@ for zone, color in [("Stable", "#00FF00"), ("Volatile", "#FF0000")]:
 fig.update_layout(template="plotly_dark", height=500, xaxis_title="Time", yaxis_title="BTC Price (USD)")
 st.plotly_chart(fig, use_container_width=True)
 
-st.subheader("📊 Volatility Intensity (Rolling Std Dev)")
+st.subheader(" Volatility Intensity (Rolling Std Dev)")
 fig_vol = px.line(df_view, x="timestamp", y="rolling_std", template="plotly_dark")
 fig_vol.add_hline(y=threshold_value, line_dash="dash", line_color="yellow")
 st.plotly_chart(fig_vol, use_container_width=True)
@@ -153,7 +153,7 @@ csv = df_view[["timestamp", "close", "rolling_std", "zone"]].to_csv(index=False)
 st.download_button("Download Current View CSV", data=csv, file_name="btc_analysis.csv")
 
 st.markdown(f"""
-### 🧠 Dataset Insight
+### Dataset Insights:
 * You are currently analyzing **{data_percent}%** of the historical dataset.
 * The volatility threshold is calculated using the **{percentile_threshold}th percentile** of the current view.
 * Increasing the "Total Dataset Usage" slider will allow you to look further back into the history of the file.
