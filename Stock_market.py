@@ -9,7 +9,7 @@ import os
 # =========================
 # 1. PAGE CONFIG & THEME
 # =========================
-st.set_page_config(page_title="BTC Volatility Intelligence", page_icon="📈", layout="wide")
+st.set_page_config(page_title="BTC Volatility Intelligence", page_icon="📊", layout="wide")
 
 st.title("₿ BTC Volatility Intelligence Dashboard")
 st.markdown("### Advanced Financial Analytics & Market Regime Detection")
@@ -53,15 +53,15 @@ def load_market_data():
 # =========================
 # 3. SIDEBAR CONTROLS
 # =========================
-st.sidebar.header("🕹️ Dashboard Controls")
+st.sidebar.header("Dashboard Controls")
 
 df_raw, detected_name = load_market_data()
 
 if df_raw is not None:
-    st.sidebar.success(f"✅ Data Source: {detected_name}")
+    st.sidebar.success(f"Data Source: {detected_name}")
     analysis_mode = st.sidebar.radio("Data Source:", ["Live Historical Data", "Synthetic Simulation"])
 else:
-    st.sidebar.warning("⚠️ No historical file detected. Running in Simulation Mode.")
+    st.sidebar.warning("No historical file detected. Running in Simulation Mode.")
     analysis_mode = "Synthetic Simulation"
 
 rolling_window = st.sidebar.slider("Rolling Window (Minutes)", 10, 500, 60)
@@ -102,7 +102,7 @@ m1.metric("Active Mode", analysis_mode)
 m2.metric("Volatility Threshold", f"{thresh:.2f}")
 m3.metric("Current Regime", df_view["zone"].iloc[-1])
 
-st.subheader("📊 Price Action & Regime Classification")
+st.subheader("Price Action & Regime Classification")
 fig = go.Figure()
 for zone, color in [("Stable Mode", "#00FF00"), ("Volatile Mode", "#FF0000")]:
     mask = df_view["zone"] == (zone.split(" ")[0])
@@ -131,7 +131,7 @@ with col2:
 # =========================
 # 6. TECHNICAL DOCUMENTATION
 # =========================
-with st.expander("📚 Quantitative Methodology"):
+with st.expander("Quantitative Methodology"):
     st.markdown("### Methodology Overview")
     st.write("This dashboard utilizes quantitative finance techniques to analyze price behavior:")
     st.write("- **Stochastic Modeling:** Market noise is identified using Gaussian distribution variance.")
