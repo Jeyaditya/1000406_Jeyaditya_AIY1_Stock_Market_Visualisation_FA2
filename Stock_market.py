@@ -11,8 +11,8 @@ import os
 # =========================
 st.set_page_config(page_title="BTC Volatility Intel", layout="wide")
 
-st.title("₿ BTC Volatility Intelligence Dashboard")
-st.markdown("### Mathematics for AI-II | Formative Project 2")
+st.title(" BTC Volatility Intelligence Dashboard")
+st.markdown("### Mathematics for AI")
 
 # =========================
 # 2. ROBUST DATA LOADER
@@ -71,7 +71,6 @@ if mode == "Real BTC Data":
         mode = "Math Logic Simulation"
 
 if mode == "Math Logic Simulation" or df_final is None:
-    # Rubric Requirement: Use Sine/Noise/Integrals
     t = np.linspace(0, 100, 2000)
     sine = 15 * np.sin(t / 5) 
     noise = np.random.normal(0, 5, 2000)
@@ -83,7 +82,6 @@ if mode == "Math Logic Simulation" or df_final is None:
         'close': price
     })
 
-# Calculations
 df_final["rolling_std"] = df_final["close"].rolling(window=rolling_window).std()
 df_view = df_final.tail(10000).copy()
 
@@ -124,7 +122,7 @@ with col2:
 # =========================
 # 6. RUBRIC: INSIGHTFUL EXPLANATIONS
 # =========================
-with st.expander("📚 Mathematical Rationale"):
+with st.expander("Mathematical Rationale"):
     # Fixed the f-string syntax error by using standard markdown
     st.markdown("### Logic & AI Framework")
     st.write("- **Stochastic Noise:** Modeled via Gaussian distributions.")
@@ -132,6 +130,5 @@ with st.expander("📚 Mathematical Rationale"):
     st.write("- **Trend (Drift):** Modeled using discrete integrals.")
     st.latex(r"\sigma = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \mu)^2}")
 
-# Download Button
 csv = df_view.to_csv(index=False).encode('utf-8')
 st.sidebar.download_button("📥 Download Analysis CSV", data=csv, file_name="analysis.csv")
